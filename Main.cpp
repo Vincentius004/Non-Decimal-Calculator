@@ -5,6 +5,7 @@ using std::endl;
 
 #include<string>
 using std::string;
+#include "Contas.cpp"
 
 
 int verificar(string numero, int tamanho, int base)  // verificar se está de acordo com a base informada
@@ -47,6 +48,12 @@ int main()
 
   int a =verificar(secValor,secValor.length(),base);
   cout<<a<<endl;
+  if (a < 0){
+    cout<<"Os números informados não condizem com a base"<<endl;
+    return 0;
+  }
+
+  Contas contas(priValor, secValor, base);
 
   cout<<"Digite a operação dentre a lista: + - * / "<<endl;
   cin >> operacao;
@@ -54,15 +61,20 @@ int main()
   switch(operacao)
   {
     case'+':cout<<"+";
+    cout<<"Resultado: " + std::to_string(contas.Soma())<<endl;
     break;
 
     case'-':cout<<"-";
+    cout<<"Resultado: " + std::to_string(contas.Subtracao())<<endl;
     break;
 
     case'*':cout<<"*";
+    cout<<"Resultado: " + std::to_string(contas.Multiplicacao())<<endl;
     break;
 
     case'/':cout<<"/";
+    cout<<"Resultado: " + std::to_string(contas.Divisao())<<endl;
+    break;
 
     default:cout<<"Digite uma operacao valida!"<<endl;
 
