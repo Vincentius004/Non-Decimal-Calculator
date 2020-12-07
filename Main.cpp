@@ -13,15 +13,21 @@ int verificar(string numero, int tamanho, int base)  // verificar se está de ac
   int indice;
   for(indice = 0; indice < tamanho; indice++)  // percorrer toda a string
   {
-    if(!isdigit(numero[indice]))  // se o caractere atual não for um dígito
+    if(isalpha(numero[indice]))  // se o caractere atual não for um dígito
     {
       if((toupper(numero[indice])-55) > base - 1)
         return -1;  // não está de acordo
-      }
-    else  // se for um dígito
+    }
+    else if (isdigit(numero[indice]))  // se for um dígito
     {
       if((numero[indice]-48) > base - 1)
         return -1;  // não está de acordo
+    }
+    else 
+    {
+      if(numero[indice] == '.' || numero[indice] == ',')
+        continue;
+      return -1;
     }
   }
   return 1;  // está de acordo
@@ -44,11 +50,11 @@ int main()
   cout<< "Digite o segundo valor: "<<endl;
   cin >> secValor;
 
-
-
-  int a =verificar(secValor,secValor.length(),base);
+  int a =verificar(priValor,secValor.length(),base);
+  int b =verificar(secValor,secValor.length(),base);
   cout<<a<<endl;
-  if (a < 0){
+  cout<<b<<endl;
+  if (a < 0 || b < 0){
     cout<<"Os números informados não condizem com a base"<<endl;
     return 0;
   }
@@ -61,19 +67,19 @@ int main()
   switch(operacao)
   {
     case'+':cout<<"+";
-    cout<<"Resultado: " + std::to_string(contas.Soma())<<endl;
+    cout<<"Resultado: " + contas.Soma()<<endl;
     break;
 
     case'-':cout<<"-";
-    cout<<"Resultado: " + std::to_string(contas.Subtracao())<<endl;
+    cout<<"Resultado: " + contas.Subtracao()<<endl;
     break;
 
     case'*':cout<<"*";
-    cout<<"Resultado: " + std::to_string(contas.Multiplicacao())<<endl;
+    cout<<"Resultado: " + contas.Multiplicacao()<<endl;
     break;
 
     case'/':cout<<"/";
-    cout<<"Resultado: " + std::to_string(contas.Divisao())<<endl;
+    cout<<"Resultado: " + contas.Divisao()<<endl;
     break;
 
     default:cout<<"Digite uma operacao valida!"<<endl;

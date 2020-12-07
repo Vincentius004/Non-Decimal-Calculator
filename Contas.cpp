@@ -6,37 +6,41 @@ using std::endl;
 #include<string>
 #include <stdlib.h>
 using std::string;
+#include "Somador.cpp"
 
 class Contas{
 
-  double numeroUm, numeroDois;
+  string numeroUm, numeroDois;
   int base;
 
   public:
     Contas(string um, string dois, int b){
-      numeroUm = std::stod(um);
-      numeroDois = std::stod(dois);
+      numeroUm = um;
+      numeroDois = dois;
       base = b;
     }
 
-  double Soma(){
-    //return Somador.somar(numeroUm, numeroDois, base);
-    return 0.0;
+  string Soma(){
+    string resultado =  Somador::somar(numeroUm, numeroDois, base);
+    return resultado;
   }
 
-  double Subtracao(){
-    //return Subtrador.subtrair(numeroUm, numeroDois, base);
-    return 1.0;
+  string Subtracao(){
+    //string resultado = Subtrador::subtrair(numeroUm, numeroDois, base);
+    //return resultado
+    return "1.0";
   }
 
-  double Multiplicacao(){
+  string Multiplicacao(){
+    //string resultado = Multiplicador::multiplicar(numeroUm, numeroDois, base);
     //return Multiplicador.multiplicar(numeroUm, numeroDois, base);
-    return 2.0;
+    return "2.0";
   }
 
-  double Divisao(){
-    //return Divisora.dividir(numeroUm, numeroDois, base);
-    return 3.0;
+  string Divisao(){
+    //string resultado = Divisora::dividir(numeroUm, numeroDois, base);
+    //return resultado;
+    return "3.0";
   }
 
 };
