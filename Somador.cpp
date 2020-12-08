@@ -23,28 +23,66 @@ class Somador{
       string dois = numeroDois;
       int size1 = numeroUm.length();
       int size2 = numeroUm.length();
+      int size;
+      if(size1 > size2)
+        size = size1;
+      else
+        size = size2;
+      bool peso = false;
 
-      for(int i = 0; i < size1; i++)
+      for(int i = size - 1; i >= 0; i--)
       {
+        if(i >= size1 || i >= size2)
+          break;
         char atual1 = numeroUm[i];
         char atual2 = numeroDois[i];
-        if(isdigit(atual1))
-        {
-          int val1 = atual1 - '0';
-          int val2 = atual2 - '0';
+        
+          int val1;
+          int val2;
+          if(isdigit(atual1))
+            val1 = atual1 - '0';
+          else
+            val1 = charToInt(atual1);
+          if(isdigit(atual2))
+            val2 = atual2 - '0';
+          else
+            val2 = charToInt(atual2);
+          if(peso)
+          {
+            if(isdigit(um[i - 1]))
+              val1 += 1;
+            else
+              um[i - 1] = intToChar(charToInt(um[i - 1]) + 1);
+          }
           if(val1 + val2 < base)
+          {
             um[i] = (val1 + val2) + '0';
+            peso = false;
+          }
           else
           {
-            int val11 = um[i + 1] - '0';
-            um[i + 1] = (val11 + 1) + '0';
             um[i] = ((val1 + val2) - base) + '0';
+            if(i - 1 < 0)
+            {
+              um = "1" + um;
+              continue;
+            }
+            peso = true;
           }
-        }
-        cout<<"aaa: " + um<<endl;
+        
       }
       
       return um;
+    }
+
+    static int charToInt(char letter)
+    {
+      return (int) (letter - 55);
+    }
+
+    static char intToChar(int number)
+    {
+      return (char) (number + 48);
     }
 
 };

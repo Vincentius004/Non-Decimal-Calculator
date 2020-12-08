@@ -7,6 +7,9 @@ using std::endl;
 #include <stdlib.h>
 using std::string;
 #include "Somador.cpp"
+#include "Subtrador.cpp"
+#include "Multiplicador.cpp"
+#include "Divisor.cpp"
 
 class Contas{
 
