@@ -30,8 +30,9 @@ class Contas{
   }
 
   string Subtracao(){
-    //string resultado = Subtrador::subtrair(numeroUm, numeroDois, base);
-    //return resultado
+    Subtrador subtracao;
+    string resultado = subtracao.subtrair(numeroUm, numeroDois, base);
+    return resultado;
     return "1.0";
   }
 

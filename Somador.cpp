@@ -44,16 +44,16 @@ class Somador{
           continue;
         char atual1 = primeiro[i];
         char atual2 = segundo[i];
-          int val1;
-          int val2;
-          if(isdigit(atual1))
-            val1 = atual1 - '0';
-          else
-            val1 = charToInt(atual1);
-          if(isdigit(atual2))
-            val2 = atual2 - '0';
-          else
-            val2 = charToInt(atual2);
+        int val1;
+        int val2;
+        if(isdigit(atual1))
+          val1 = atual1 - '0';
+        else
+          val1 = charToInt(atual1);
+        if(isdigit(atual2))
+          val2 = atual2 - '0';
+        else
+          val2 = charToInt(atual2);
           if(peso)
           {
             if(isdigit(um[i]))
