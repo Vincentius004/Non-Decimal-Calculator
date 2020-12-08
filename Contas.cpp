@@ -24,7 +24,8 @@ class Contas{
     }
 
   string Soma(){
-    string resultado =  Somador::somar(numeroUm, numeroDois, base);
+    Somador soma;
+    string resultado =  soma.somar(numeroUm, numeroDois, base);
     return resultado;
   }
 

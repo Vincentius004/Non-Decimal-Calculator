@@ -50,7 +50,7 @@ int main()
   cout<< "Digite o segundo valor: "<<endl;
   cin >> secValor;
 
-  int a =verificar(priValor,secValor.length(),base);
+  int a =verificar(priValor,priValor.length(),base);
   int b =verificar(secValor,secValor.length(),base);
   cout<<a<<endl;
   cout<<b<<endl;
