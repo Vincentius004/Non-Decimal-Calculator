@@ -33,13 +33,14 @@ class Contas{
     Subtrador subtracao;
     string resultado = subtracao.subtrair(numeroUm, numeroDois, base);
     return resultado;
-    return "1.0";
+
   }
 
   string Multiplicacao(){
-    //string resultado = Multiplicador::multiplicar(numeroUm, numeroDois, base);
-    //return Multiplicador.multiplicar(numeroUm, numeroDois, base);
-    return "2.0";
+    Multiplicador multiplicacao;
+    string resultado = multiplicacao.multiplicar(numeroUm, numeroDois, base);
+    return resultado;
+
   }
 
   string Divisao(){
