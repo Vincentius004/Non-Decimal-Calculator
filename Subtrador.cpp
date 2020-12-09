@@ -26,13 +26,56 @@ class Subtrador{
       string dois = segundo;
       int size1 = primeiro.length();
       int size2 = segundo.length();
-      
+      bool resultNegativo = false;
       int size;
       
-      if(size1 > size2)
+      
+
+      if(numeroUm.length() > numeroDois.length())
         size = size1;
-      else
+      else if(numeroUm.length() < numeroDois.length())
+      {
         size = size2;
+        um = segundo;
+        dois = primeiro;
+        resultNegativo = true;
+      }      
+      else
+      {
+        
+        for(int i =0; i <= size1-1; i++)
+        {
+          if(primeiro[i] == '.')
+            continue;
+          size = size1;
+          char atual1 = primeiro[i];
+          char atual2 = segundo[i];
+          int val1;
+          int val2;
+          
+          if(isdigit(atual1))
+            val1 = atual1 - 48;
+          else
+            val1 = charToInt(atual1);
+          if(isdigit(atual2))
+            val2 = atual2 - 48;
+          else
+            val2 = charToInt(atual2);
+
+          if(val1 > val2)
+          {
+            
+            break;
+          }
+          if (val1 < val2)
+          {
+            um = segundo;
+            dois = primeiro;
+            resultNegativo = true;
+            break;
+          }
+        }
+      }
       bool peso = false;
 
 
@@ -44,8 +87,8 @@ class Subtrador{
         if(um[i] == '.')
           continue;
 
-        char atual1 = primeiro[i];
-        char atual2 = segundo[i];
+        char atual1 = um[i];
+        char atual2 = dois[i];
         int val1;
         int val2;
         if(isdigit(atual1))
@@ -56,47 +99,72 @@ class Subtrador{
           val2 = atual2 - '0';
         else
           val2 = charToInt(atual2);
-
         if(val1 >= val2) 
         {
           if(isdigit(um[i]))
             um[i] = ((um[i] - '0') - val2) + '0';
           else
-            um[i] = intToChar(charToInt(um[i]) - val2);
-        }
-        else/// 100 32
-        {
-          for(int y = i - 1; y >= 0; y--)
           {
-            if(isdigit(um[y]))
-            {
-              if(um[y] - 48 > 0)
-              {
-                
-                um[y] = ((um[y] -48) - 1) + 48;
-                if(isdigit(um[y + 1]))
-                  um[y + 1] = (um[y + 1] - 48) + base;
-                else
-                  um[y + 1] = charToInt(um[y + 1]) + base;
-                y++;
-              }
-            }
+            int valor = charToInt(um[i]) - val2;
+            if(valor >= 10)
+              um[i] = intToChar(valor);
             else
-            {
-              if(charToInt(um[y]) > 0)
-              {
-                um[y] = (charToInt(um[y]) - 1) + 48;
-                if(isdigit(um[y + 1]))
-                  um[y + 1] = (um[y + 1] - 48) + base;
-                else
-                  um[y + 1] = charToInt(um[y + 1]) + base;
-                y++;
-              }
-            }
+              um[i] = valor + '0';
           }
         }
-        return um;
+        else
+        {
+          for(int n = i - 1; n >= 0; n--)
+          {
+            if(um[n] == '.')
+              continue;
+            if(isalpha(um[n]) || um[n] - '0' > 0)
+            {
+              int valAtual;
+              if(isdigit(um[n]))
+                valAtual = um[n] - '0';
+              else
+                valAtual = charToInt(um[n]);
+              valAtual--;
+              val1 += base;
+              val1 -= val2;
+              if(val1 >= 10)
+                um[i] = intToChar(val1);
+              else
+                um[i] = val1 + '0';
+              if(valAtual >= 10)
+                um[n] = intToChar(valAtual);
+              else
+                um[n] = valAtual + '0';
+
+              for(int x = n + 1; x < i; x++)
+              {
+                if(um[x] == '.')
+                  continue;
+                int valAnterior;
+                if(isdigit(um[x]))
+                  valAnterior = um[n] - '0';
+                else
+                  valAnterior = charToInt(um[x]);
+                valAnterior--;
+                if(valAtual >= 10)
+                  um[x] = intToChar(valAnterior);
+                else
+                  um[x] = valAnterior + '0';
+              }
+              break;
+            }
+            else
+              continue;
+          }
+        }
+        
       }
+      
+      if(resultNegativo)
+          um = "-" + um;
+      return um;
+      
     }
 
     int charToInt(char letter)

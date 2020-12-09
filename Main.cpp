@@ -70,15 +70,15 @@ int main()
     cout<<"Resultado: " + contas.Soma()<<endl;
     break;
 
-    case'-':cout<<"-";
+    case'-':cout<<"-\n";
     cout<<"Resultado: " + contas.Subtracao()<<endl;
     break;
 
-    case'*':cout<<"*";
+    case'*':cout<<"*\n";
     cout<<"Resultado: " + contas.Multiplicacao()<<endl;
     break;
 
-    case'/':cout<<"/";
+    case'/':cout<<"/\n";
     cout<<"Resultado: " + contas.Divisao()<<endl;
     break;
 
