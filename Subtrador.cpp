@@ -14,7 +14,7 @@ class Subtrador{
     string subtrair(string numeroUm, string numeroDois, int base)
     {
       ajeitarStrings(numeroUm, numeroDois);
-      return getSubtracao(numeroUm, numeroDois, base);
+      return getSubtracao(primeiro, segundo, base);
     }
 
   private:
@@ -22,10 +22,10 @@ class Subtrador{
 
     string getSubtracao(string numeroUm, string numeroDois, int base)
     {
-      string um = primeiro;
-      string dois = segundo;
-      int size1 = primeiro.length();
-      int size2 = segundo.length();
+      string um = numeroUm;
+      string dois = numeroDois;
+      int size1 = numeroUm.length();
+      int size2 = numeroDois.length();
       bool resultNegativo = false;
       int size;
       
@@ -45,11 +45,11 @@ class Subtrador{
         
         for(int i =0; i <= size1-1; i++)
         {
-          if(primeiro[i] == '.')
+          if(numeroUm[i] == '.')
             continue;
           size = size1;
-          char atual1 = primeiro[i];
-          char atual2 = segundo[i];
+          char atual1 = numeroUm[i];
+          char atual2 = numeroDois[i];
           int val1;
           int val2;
           
@@ -69,8 +69,8 @@ class Subtrador{
           }
           if (val1 < val2)
           {
-            um = segundo;
-            dois = primeiro;
+            um = numeroDois;
+            dois = numeroUm;
             resultNegativo = true;
             break;
           }
@@ -254,6 +254,19 @@ class Subtrador{
         segundo = segundoAntes + "." + segundoDepois;
       else
         segundo = segundoAntes;
+
+      if(primeiro.length() > segundo.length())
+      {
+        segundo += ".";
+        while(segundo.length() < primeiro.length())
+          segundo += "0";
+      }
+      else if (segundo.length() > primeiro.length())
+      {
+        primeiro += ".";
+        while(primeiro.length() < segundo.length())
+          primeiro += "0";
+      }
     }
 
 };

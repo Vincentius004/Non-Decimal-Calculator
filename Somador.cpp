@@ -15,7 +15,7 @@ class Somador{
     string somar(string numeroUm, string numeroDois, int base)
     {
       ajeitarStrings(numeroUm, numeroDois);
-      return getSoma(numeroUm, numeroDois, base);
+      return getSoma(primeiro, segundo, base);
     }
   
   private:
@@ -23,10 +23,10 @@ class Somador{
 
     string getSoma(string numeroUm, string numeroDois, int base)
     {
-      string um = primeiro;
-      string dois = segundo;
-      int size1 = primeiro.length();
-      int size2 = segundo.length();
+      string um = numeroUm;
+      string dois = numeroDois;
+      int size1 = numeroUm.length();
+      int size2 = numeroDois.length();
       
       int size;
       
@@ -42,8 +42,8 @@ class Somador{
           break;
         if(um[i] == '.')
           continue;
-        char atual1 = primeiro[i];
-        char atual2 = segundo[i];
+        char atual1 = numeroUm[i];
+        char atual2 = numeroDois[i];
         int val1;
         int val2;
         if(isdigit(atual1))
@@ -182,6 +182,19 @@ class Somador{
         segundo = segundoAntes + "." + segundoDepois;
       else
         segundo = segundoAntes;
+
+      if(primeiro.length() > segundo.length())
+      {
+        segundo += ".";
+        while(segundo.length() < primeiro.length())
+          segundo += "0";
+      }
+      else if (segundo.length() > primeiro.length())
+      {
+        primeiro += ".";
+        while(primeiro.length() < segundo.length())
+          primeiro += "0";
+      }
     }
 
 };
