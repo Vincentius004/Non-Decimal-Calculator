@@ -27,8 +27,70 @@ class Divisor{
 
     string getDivisao(string numeroUm,string numeroDois,int base)
     {
-      
-      Multiplicador multi;
+      string um = numeroUm;
+      bool decimal = false;
+      Somador somador;
+      Subtrador subtrador;
+      string resultado = "";
+      for(;;)
+      {
+        string numeroSubtrair = "0";
+        int i = 0;
+        bool achou = false;
+        while(!achou)
+        {
+          
+          i++;
+          numeroSubtrair = somador.somar(numeroSubtrair, numeroDois, base);
+          string subtraido = subtrador.subtrair(um, numeroSubtrair, base);
+          bool negativo = false;
+          for(int j = 0; j < subtraido.length(); j++)
+            if(subtraido[j] == '-')
+              negativo = true;
+          if(negativo)
+          {
+            numeroSubtrair = subtrador.subtrair(numeroSubtrair, numeroDois, base);
+            i--;
+            achou = true;
+          }
+        }
+        string resto = subtrador.subtrair(um, numeroSubtrair, base);
+        if(std::stod(resto) == 0)
+        {
+          if(i < 10)
+            resultado += std::to_string(i);
+          else
+            resultado += intToChar(i);
+          break;
+        }
+        else
+        {
+          if(i < 10)
+            resultado += std::to_string(i);
+          else
+            resultado += intToChar(i);
+          um = resto;
+          string subtraido = subtrador.subtrair(um, numeroDois, base);
+          bool negativo = false;
+          for(int j = 0; j < subtraido.length(); j++)
+            if(subtraido[j] == '-')
+              negativo = true;
+          if(negativo)
+          {
+            if(!decimal)
+              resultado += ".";
+            um += "0";
+            decimal = true;
+            continue;
+          }
+          else
+            continue;
+        }
+      }
+      return resultado;
+      //break;
+
+      /*Multiplicador multi;
       Subtrador sub;
       string multiplosDivisor[base];
       string maiorMultiplo;
@@ -67,14 +129,18 @@ class Divisor{
         algarismoSignificativos = algarismoSignificativos+numeroUm[i];  
         i++;
       }
-    
+     // algarismoSignificativos.pop_back();
+   
+
+
     string a =sub.subtrair(algarismoSignificativos,numeroDois,base);
-   /* cout<<"batatao :"<<algarismoSignificativos<<endl;
+    cout<<"batatao :"<<algarismoSignificativos[0]<<"uo"<<endl;
+    cout<<"length 3 :"<<algarismoSignificativos[1]<<endl;
     cout<<"olha o corno aq-> :"<<numeroDois<<endl;
     cout<<"resultzknsk :"<<a<<endl;
     cout<<"length 1 :"<<algarismoSignificativos.length()<<endl;
     cout<<"length 2 :"<<numeroDois.length()<<endl;
-    */
+    
       if(sub.subtrair(algarismoSignificativos,numeroDois,base)[0]==45)
         algarismoSignificativos= algarismoSignificativos +numeroUm[++i];
 
@@ -100,7 +166,7 @@ class Divisor{
       }
 
 
-      return quociente;
+      return quociente;*/
     }
 
     int charToInt(char letter)
