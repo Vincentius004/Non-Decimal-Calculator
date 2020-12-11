@@ -48,8 +48,6 @@ class Multiplicador{
       string soma[qtdSoma];
       int indiceSoma = 0;
 
-      cout<<"Mr potato head"<<size1<<endl;
-      cout<<"Mr potato head"<<size2<<endl;
       for(int i = size1-1; i>=0;i--)
       {
         if(i >= size1 || i >= size2)
@@ -79,18 +77,21 @@ class Multiplicador{
           quociente = aux/base;
           resto = aux%base;
 
-          cout<<"Olha o aux->"<<aux<<endl;
-          cout<<"Olha o quociente->"<<quociente<<endl;
-          cout<<"Olha o resto->"<<resto<<endl;
 
-          if(resto<10)
-            umaSoma = (char)(resto + '0') + umaSoma;
-          else
-            umaSoma= (intToChar(resto)) + umaSoma;
+           if(resto<10) 
+          umaSoma = (char)(resto + '0') + umaSoma;
+          else 
+          umaSoma= (intToChar(resto)) + umaSoma;
 
-          if(y == 0)
-            if (quociente >0)
-             umaSoma = (char)(quociente +'0') + umaSoma;
+          if(y == 0) 
+
+          { 
+            if (quociente >0) 
+            { 
+              if(quociente<10) umaSoma = (char)(quociente +'0') + umaSoma;
+             else umaSoma = intToChar(quociente) +umaSoma; 
+            } 
+          }
 
         }
         
@@ -194,7 +195,7 @@ class Multiplicador{
         }
       }
 
-      if(primeiroDepois.length() > segundoDepois.length())
+      if(primeiroDepois.length()-1 > segundoDepois.length())
       {
         while(primeiroDepois.length() > segundoDepois.length())
         {
@@ -204,7 +205,7 @@ class Multiplicador{
 
       else
       {
-        while(segundoDepois.length() > primeiroDepois.length())
+        while(segundoDepois.length()-1 > primeiroDepois.length())
         {
           primeiroDepois += "0";
         }

@@ -44,9 +44,10 @@ class Contas{
   }
 
   string Divisao(){
-    //string resultado = Divisora::dividir(numeroUm, numeroDois, base);
-    //return resultado;
-    return "3.0";
+    Divisor divisao;
+    string resultado = divisao.dividir(numeroUm, numeroDois, base);
+    return resultado;
+    
   }
 
 };
