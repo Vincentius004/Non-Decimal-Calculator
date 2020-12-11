@@ -114,26 +114,17 @@ class Multiplicador{
       }
 
       string resultado2 = "";
-      for(int i = 0; i <= resultado.length()-1; i++)
+      for(int i = 0; i < resultado.length(); i++)
       {
-        resultado2 = resultado[i] + resultado2;
-      }
-      string resultado3 = "";
-
-
-      for(int i = resultado2.length() - 1; i >= 0; i--)
-      {
-
-        if(resultado2.length()-i  == casasVirgula1 + casasVirgula2)
-        resultado3 +=".";
-        cout<<"Mr potato head"<<i<<endl;
-        resultado3 += resultado2[i];
+        if((resultado.length() - i) == casasVirgula1 + casasVirgula2)
+          resultado2 += ".";
+        resultado2 += resultado[i];
       }
       
       if(casasVirgula1 == 0 && casasVirgula2 == 0)
         return resultado;
       else
-        return resultado3;
+        return resultado2;
     }
 
     int charToInt(char letter)
@@ -232,13 +223,19 @@ class Multiplicador{
       {
         segundo += ".";
         while(segundo.length() < primeiro.length())
+        {
           segundo += "0";
+          casasVirgula2++;
+        }
       }
       else if (segundo.length() > primeiro.length())
       {
         primeiro += ".";
         while(primeiro.length() < segundo.length())
+        {
           primeiro += "0";
+          casasVirgula1++;
+        }
       }
     }
 
