@@ -6,21 +6,25 @@ using std::endl;
 #include<string>
 #include <stdlib.h>
 #include <math.h>
+#include "Subtrador.h"
+#include "Somador.h"
 using std::string;
 
-class Subtrador{
 
-  public:
-    string subtrair(string numeroUm, string numeroDois, int base)
+    string Subtrador::subtrair(string numeroUm, string numeroDois, int base)
     {
       ajeitarStrings(numeroUm, numeroDois);
+      Somador s;
+      if(!primeiroNegativo && segundoNegativo)
+        return s.somar(primeiro, segundo, base);
+      else if(primeiroNegativo && segundoNegativo)
+        return getSubtracao(segundo, primeiro, base);
+      else if(primeiroNegativo && !segundoNegativo)
+        return s.somar("-" + primeiro, "-" + segundo, base);
       return getSubtracao(primeiro, segundo, base);
     }
 
-  private:
-    string primeiro, segundo;
-
-    string getSubtracao(string numeroUm, string numeroDois, int base)
+    string Subtrador::getSubtracao(string numeroUm, string numeroDois, int base)
     {
       string um = numeroUm;
       string dois = numeroDois;
@@ -175,24 +179,23 @@ class Subtrador{
         resultadoFormatado = resultadoFormatado + um[i];
       }
 
-      
       if(resultNegativo)
           resultadoFormatado = "-" + resultadoFormatado;
       return resultadoFormatado;
       
     }
 
-    int charToInt(char letter)
+    int Subtrador::charToInt(char letter)
     {
       return (int) (letter - 55);
     }
 
-    char intToChar(int number)
+    char Subtrador::intToChar(int number)
     {
       return (char) (number + 55);
     }
 
-    void ajeitarStrings(string numeroUm, string numeroDois)
+    void Subtrador::ajeitarStrings(string numeroUm, string numeroDois)
     {
       primeiro = numeroUm;
       segundo = numeroDois;
@@ -202,6 +205,28 @@ class Subtrador{
       string segundoDepois = "";
       bool temVirgula1 = false;
       bool temVirgula2 = false;
+
+      if((char)primeiro[0] == 45)
+      {
+        string aux = "";
+        for(int i = 1; i < primeiro.length(); i++)
+        {
+          aux += primeiro[i];
+        }
+        primeiro = aux;
+        primeiroNegativo = true;
+      }
+
+      if((char)segundo[0] == 45)
+      {
+        string aux = "";
+        for(int i = 1; i < segundo.length(); i++)
+        {
+          aux += segundo[i];
+        }
+        segundo = aux;
+        segundoNegativo = true;
+      }
 
       for(int i = 0; i < primeiro.length(); i++)
       {
@@ -283,5 +308,3 @@ class Subtrador{
           primeiro += "0";
       }
     }
-
-};

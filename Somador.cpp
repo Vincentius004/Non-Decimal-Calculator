@@ -6,22 +6,22 @@ using std::endl;
 #include<string>
 #include <stdlib.h>
 #include <math.h>
+#include "Somador.h"
+#include "Subtrador.h"
 using std::string;
 
-class Somador{
-
-  public:
-
-    string somar(string numeroUm, string numeroDois, int base)
+    string Somador::somar(string numeroUm, string numeroDois, int base)
     {
       ajeitarStrings(numeroUm, numeroDois);
+      Subtrador s;
+      if(primeiroNegativo && !segundoNegativo)
+        return s.subtrair(segundo, primeiro, base);
+      else if(!primeiroNegativo && segundoNegativo)
+        return s.subtrair(primeiro, segundo, base);
       return getSoma(primeiro, segundo, base);
     }
-  
-  private:
-    string primeiro, segundo;
 
-    string getSoma(string numeroUm, string numeroDois, int base)
+    string Somador::getSoma(string numeroUm, string numeroDois, int base)
     {
       string um = numeroUm;
       string dois = numeroDois;
@@ -91,21 +91,23 @@ class Somador{
           }
         
       }
-      
+    
+    if(primeiroNegativo && segundoNegativo)
+      return "-" + um;
     return um;
     }
 
-    int charToInt(char letter)
+    int Somador::charToInt(char letter)
     {
       return (int) (letter - 55);
     }
 
-    char intToChar(int number)
+    char Somador::intToChar(int number)
     {
       return (char) (number + 55);
     }
 
-    void ajeitarStrings(string numeroUm, string numeroDois)
+    void Somador::ajeitarStrings(string numeroUm, string numeroDois)
     {
       primeiro = numeroUm;
       segundo = numeroDois;
@@ -115,6 +117,28 @@ class Somador{
       string segundoDepois = "";
       bool temVirgula1 = false;
       bool temVirgula2 = false;
+
+      if((char)primeiro[0] == 45)
+      {
+        string aux = "";
+        for(int i = 1; i < primeiro.length(); i++)
+        {
+          aux += primeiro[i];
+        }
+        primeiro = aux;
+        primeiroNegativo = true;
+      }
+
+      if((char)segundo[0] == 45)
+      {
+        string aux = "";
+        for(int i = 1; i < segundo.length(); i++)
+        {
+          aux += segundo[i];
+        }
+        segundo = aux;
+        segundoNegativo = true;
+      }
 
       for(int i = 0; i < primeiro.length(); i++)
       {
@@ -196,5 +220,3 @@ class Somador{
           primeiro += "0";
       }
     }
-
-};

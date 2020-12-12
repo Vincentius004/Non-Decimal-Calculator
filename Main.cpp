@@ -5,7 +5,7 @@ using std::endl;
 
 #include<string>
 using std::string;
-#include "Contas.cpp"
+#include "Contas.h"
 
 
 int verificar(string numero, int tamanho, int base)  // verificar se está de acordo com a base informada
@@ -25,7 +25,7 @@ int verificar(string numero, int tamanho, int base)  // verificar se está de ac
     }
     else 
     {
-      if(numero[indice] == '.' || numero[indice] == ',')
+      if(numero[indice] == '.' || numero[indice] == ',' || numero[indice] == '-')
         continue;
       return -1;
     }

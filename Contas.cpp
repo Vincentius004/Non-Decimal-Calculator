@@ -6,50 +6,41 @@ using std::endl;
 #include<string>
 #include <stdlib.h>
 using std::string;
-#include "Somador.cpp"
-#include "Subtrador.cpp"
-#include "Multiplicador.cpp"
-#include "Divisor.cpp"
+#include "Contas.h"
+#include "Somador.h"
+#include "Subtrador.h"
+#include "Multiplicador.h"
+#include "Divisor.h"
 
-class Contas{
-
-  string numeroUm, numeroDois;
-  int base;
-
-  public:
-    
-
-    Contas(string um, string dois, int b){
+    Contas::Contas(string um, string dois, int b){
       numeroUm = um;
       numeroDois = dois;
       base = b;
     }
 
-  string Soma(){
+  string Contas::Soma(){
     Somador soma;
     string resultado =  soma.somar(numeroUm, numeroDois, base);
     return resultado;
   }
 
-  string Subtracao(){
+  string Contas::Subtracao(){
     Subtrador subtracao;
     string resultado = subtracao.subtrair(numeroUm, numeroDois, base);
     return resultado;
 
   }
 
-  string Multiplicacao(){
+  string Contas::Multiplicacao(){
     Multiplicador multiplicacao;
     string resultado = multiplicacao.multiplicar(numeroUm, numeroDois, base);
     return resultado;
 
   }
 
-  string Divisao(){
+  string Contas::Divisao(){
     Divisor divisao;
     string resultado = divisao.dividir(numeroUm, numeroDois, base);
     return resultado;
     
   }
-
-};
