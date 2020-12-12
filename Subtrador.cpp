@@ -161,9 +161,24 @@ class Subtrador{
         
       }
       
+      string resultadoFormatado="";
+      int i=0;
+      while((char)um[i]==48)
+      {
+        i++;
+      }
+      if(i == um.length())
+        resultadoFormatado +="0";
+      for(;i<um.length();i++)
+      {
+        
+        resultadoFormatado = resultadoFormatado + um[i];
+      }
+
+      
       if(resultNegativo)
-          um = "-" + um;
-      return um;
+          resultadoFormatado = "-" + resultadoFormatado;
+      return resultadoFormatado;
       
     }
 

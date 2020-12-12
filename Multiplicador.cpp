@@ -122,10 +122,43 @@ class Multiplicador{
         resultado2 += resultado[i];
       }
       
+      
+      string resultadoFormatado;
       if(casasVirgula1 == 0 && casasVirgula2 == 0)
-        return resultado;
+      {
+        int i=0;
+        while((char)resultado[i]==48)
+        {
+          i++;
+        }
+        if(i == resultado.length())
+        resultadoFormatado +="0";
+        for(;i<resultado.length();i++)
+        {
+
+         resultadoFormatado = resultadoFormatado + resultado[i];
+        }
+       
+         return resultadoFormatado;
+        }
       else
-        return resultado2;
+      {
+        int i=0;
+        while((char)resultado2[i]==48)
+        {
+         i++;
+        }
+
+        for(;i<resultado2.length();i++)
+        {
+          if((char)resultado2[i]==46)
+          resultadoFormatado = resultadoFormatado+ "0";
+      
+         resultadoFormatado = resultadoFormatado + resultado2[i];
+        }
+      
+        return resultadoFormatado;
+      }
     }
 
     int charToInt(char letter)
@@ -140,6 +173,7 @@ class Multiplicador{
 
     void ajeitarStrings(string numeroUm, string numeroDois)
     {
+      
       primeiro = numeroUm;
       segundo = numeroDois;
       string primeiroAntes = "";

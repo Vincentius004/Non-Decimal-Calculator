@@ -17,6 +17,8 @@ class Contas{
   int base;
 
   public:
+    
+
     Contas(string um, string dois, int b){
       numeroUm = um;
       numeroDois = dois;

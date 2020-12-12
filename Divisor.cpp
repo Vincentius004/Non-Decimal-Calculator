@@ -14,8 +14,6 @@ class Divisor{
   string dividir(string numeroUm, string numeroDois, int base)
     {
       ajeitarStrings(numeroUm, numeroDois);
-      cout<<"MR potato head "<<primeiro<<endl;
-      cout<<"ndynui3 "<<segundo<<endl;
       return getDivisao(primeiro, segundo, base);
       
     }
@@ -27,55 +25,69 @@ class Divisor{
 
     string getDivisao(string numeroUm,string numeroDois,int base)
     {
+      
       string um = numeroUm;
       bool decimal = false;
       Somador somador;
       Subtrador subtrador;
       string resultado = "";
+
+      bool negativo = false;
+      while(!negativo)
+      {
+        string subtraido = subtrador.subtrair(um, numeroDois, base);
+        for(int j = 0; j < subtraido.length(); j++)
+          if(subtraido[j] == '-')
+            negativo = true;
+        if(negativo)
+        {
+          if(!decimal)
+            resultado += "0.";
+          um += "0";
+          decimal = true;
+        }
+        else
+          break;
+      }
+
       for(;;)
       {
         string numeroSubtrair = "0";
-        int i = 0;
+        string i = "0";
         bool achou = false;
         while(!achou)
         {
           
-          i++;
+          i = somador.somar(i, "1", base);
           numeroSubtrair = somador.somar(numeroSubtrair, numeroDois, base);
           string subtraido = subtrador.subtrair(um, numeroSubtrair, base);
-          bool negativo = false;
+          bool negativoAtual = false;
           for(int j = 0; j < subtraido.length(); j++)
             if(subtraido[j] == '-')
-              negativo = true;
-          if(negativo)
+              negativoAtual = true;
+          if(negativoAtual)
           {
             numeroSubtrair = subtrador.subtrair(numeroSubtrair, numeroDois, base);
-            i--;
+            i = subtrador.subtrair(i, "1", base);
             achou = true;
           }
         }
         string resto = subtrador.subtrair(um, numeroSubtrair, base);
         if(std::stod(resto) == 0)
         {
-          if(i < 10)
-            resultado += std::to_string(i);
-          else
-            resultado += intToChar(i);
+          resultado += i;
           break;
         }
         else
         {
-          if(i < 10)
-            resultado += std::to_string(i);
-          else
-            resultado += intToChar(i);
+          resultado += i;
           um = resto;
           string subtraido = subtrador.subtrair(um, numeroDois, base);
-          bool negativo = false;
+          bool negativoAtual = false;
           for(int j = 0; j < subtraido.length(); j++)
             if(subtraido[j] == '-')
-              negativo = true;
-          if(negativo)
+              negativoAtual = true;
+          if(negativoAtual)
           {
             if(!decimal)
               resultado += ".";
@@ -90,11 +102,16 @@ class Divisor{
       return resultado;
       //break;
 
-      /*Multiplicador multi;
+    /*  Multiplicador multi;
       Subtrador sub;
       string multiplosDivisor[base];
-      string maiorMultiplo;
-      string algarismoSignificativos;
+      string maiorMultiplo="";
+      string algarismoSignificativos="";
+      bool primeiraVez = true;
+
+      numeroUm = numeroUm+"0";
+      numeroDois = numeroDois+"0";
+
     int i = 0;
 
       for( i=0;i<base;i++)
@@ -103,9 +120,6 @@ class Divisor{
         if(i <10)
         {
           string s(1,i+'0');
-          cout<<"numeroDois"<<numeroDois<<endl;
-          cout<<"s"<<s<<endl;
-          cout<<"base"<<base<<endl;
           multiplosDivisor[i] = multi.multiplicar(numeroDois,s,base);
           
         }
@@ -114,59 +128,189 @@ class Divisor{
           string s(1,intToChar(i));
           multiplosDivisor[i] = multi.multiplicar(numeroDois,s,base);
         }
-      
+          cout<<multiplosDivisor[i]<<endl;
       }
       string resto="";
       string quociente="";
 
-      while(resto[0] != 48)
-      {
+      
       i =0;
-      while(algarismoSignificativos.length()<numeroDois.length())
+
+
+      int aux =numeroUm.length()-numeroDois.length();
+      if(numeroDois.length()>aux)
       {
-        cout<<"gyebydu3nidmemd3o    "<< algarismoSignificativos.length()<<endl;
-        //cout<<"jajajajabdwbhdbhwbhd"<<endl;
-        algarismoSignificativos = algarismoSignificativos+numeroUm[i];  
+
+        while(algarismoSignificativos.length()<numeroDois.length()-aux)
+        {
+        if(i<numeroUm.length()){        algarismoSignificativos = algarismoSignificativos+numeroUm[i];     
+         
         i++;
+        }
+        else
+        break;
+        }
       }
-     // algarismoSignificativos.pop_back();
-   
-
-
-    string a =sub.subtrair(algarismoSignificativos,numeroDois,base);
-    cout<<"batatao :"<<algarismoSignificativos[0]<<"uo"<<endl;
-    cout<<"length 3 :"<<algarismoSignificativos[1]<<endl;
-    cout<<"olha o corno aq-> :"<<numeroDois<<endl;
-    cout<<"resultzknsk :"<<a<<endl;
-    cout<<"length 1 :"<<algarismoSignificativos.length()<<endl;
-    cout<<"length 2 :"<<numeroDois.length()<<endl;
-    
-      if(sub.subtrair(algarismoSignificativos,numeroDois,base)[0]==45)
-        algarismoSignificativos= algarismoSignificativos +numeroUm[++i];
-
-      for(int y=0;y<base;y++)
+      else
       {
-      //  cout<<algarismoSignificativos<<endl;
+         while(algarismoSignificativos.length()<numeroDois.length()-aux-1)
+        {
+        if(i<numeroUm.length()){
+        algarismoSignificativos = algarismoSignificativos+numeroUm[i];      
+        i++;
+        }
+        else
+        break;
+        }
+        
+      }
+      
+      algarismoSignificativos = algarismoSignificativos+"0";
+      i++;
+      
+        string a =sub.subtrair(algarismoSignificativos,numeroDois,base);
+
+
+    
+      if((char)a[0]==45){
+        if(i<numeroUm.length() && (char)numeroUm[i]!=48){
+          algarismoSignificativos= algarismoSignificativos +numeroUm[i];
+          quociente = quociente+"0.";
+        }
+        else if((char)numeroUm[i]==48)
+        {
+          while(algarismoSignificativos.length()<numeroDois.length())
+          algarismoSignificativos= algarismoSignificativos+"0";
+
+           
+          
+         
+        }
+        else
+        {
+          while(algarismoSignificativos.length()<numeroDois.length())
+          algarismoSignificativos= algarismoSignificativos+"0";
+
+          
+        }
+      }
+      
+      while((char)resto[0]!=48)
+      {
+
+      int y;
+      for(y=0;y<base;y++)
+      {
+        
+        cout<<"Y "<<y<<" Multiplos= "<<multiplosDivisor[y]<<endl;
         resto = sub.subtrair(algarismoSignificativos,multiplosDivisor[y],base);
-        //cout<<"jeej "<<resto<<endl; 
+
+        cout<<"olha o resto aq OH->>>"<<resto<<endl;
+        cout<<"algarismoSignificativos"<<algarismoSignificativos.length()<<endl;
+        cout<<"olha o multiplosDivisor aq OH->>>"<<multiplosDivisor[y]<<endl;
+        system("pause");
+        cout<<"\n";
+        
      
      
       if((char)(resto[0]) != 45) 
         {
-         // cout<<"SALVE"<<endl;
-              
+          
           maiorMultiplo = multiplosDivisor[y];
         }
         else
+        {
+          resto = sub.subtrair(algarismoSignificativos,multiplosDivisor[y-1],base);
+         //cout<<"resto:"<<resto<<endl;
           break;
+        }
+
+        cout<<"Y: "<<y<<endl;
+      }
+        
+      if(primeiraVez)
+      {
+      
+      if(y<10)
+      {
+      if(y<1)
+      {
+        cout<<"Olha q legal"<<endl;
+        primeiraVez= false;
+        quociente = quociente+"0.";
+      
+      }
+      else if(y!=1)
+      {
+      cout<<"\nwtf1: "<<quociente<<endl;
+      quociente = quociente + (char)(y+47);    
+      cout<<"\nwtf2: "<<quociente<<endl;
+      }
+      }
+      else if(y<base)
+      {
+         cout<<"\nwtf3: "<<quociente<<endl;
+        quociente=quociente+(char)(y+54);
+         cout<<"\nwtf4: "<<quociente<<endl;
+      }
+      
+      
+      }
+      else
+      {
+        if(y<10)
+        {
+        if(y>0)
+        quociente = quociente + (char)(y+47); 
+        else
+        {
+        cout<<"hmmm"<<endl;
+       // if(quociente.length()<2)
+         // quociente= quociente+".";
+        //quociente= quociente+"0";
+        }
+        }
+        else if(y<base)
+        {
+          
+        quociente = quociente +(char)(y+54);
+        }
+        
+      }
+      
+
+      
+      algarismoSignificativos =  resto;
+      i++;
+      if(i<numeroUm.length() && (char)numeroUm[i]!=48){
+          algarismoSignificativos= algarismoSignificativos +numeroUm[i];
+          cout<<" Entrei aq oh"<<algarismoSignificativos<<endl;
+        }
+        else if((char)numeroUm[i]==48)
+        {
+          while(algarismoSignificativos.length()<numeroDois.length())
+          algarismoSignificativos= algarismoSignificativos+"0";
+        }
+        else if(i==numeroUm.length())
+        {
+
+          algarismoSignificativos= algarismoSignificativos+"0";
+          if(primeiraVez)
+          {
+            primeiraVez=false;
+            cout<<"cagou aq"<<quociente<<endl;
+            quociente=quociente+".";
+          }
+        }
+      cout<<"Quociente"<<quociente<<endl;
+      if(quociente.length() > 10)
+      break;
+
       }
 
-         
-      quociente = quociente+ maiorMultiplo;
-      }
 
-
-      return quociente;*/
+      return quociente;
+      */
     }
 
     int charToInt(char letter)
