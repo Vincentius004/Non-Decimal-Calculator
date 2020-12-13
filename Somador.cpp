@@ -25,8 +25,8 @@ using std::string;
     {
       string um = numeroUm;
       string dois = numeroDois;
-      int size1 = numeroUm.length();
-      int size2 = numeroDois.length();
+      int size1 = numeroUm.length();  // tamanho do primeiro
+      int size2 = numeroDois.length();  // tamanho do segundo
       
       int size;
       
@@ -36,21 +36,21 @@ using std::string;
         size = size2;
       bool peso = false;
 
-      for(int i = size - 1; i >= 0; i--)
+      for(int i = size - 1; i >= 0; i--)  // for percorrendo a maior string começando pelo final da mesma
       {
         if(i >= size1 || i >= size2)
           break;
-        if(um[i] == '.')
+        if(um[i] == '.')  // caso encontrarmos "." (vírgula)
           continue;
         char atual1 = numeroUm[i];
         char atual2 = numeroDois[i];
         int val1;
         int val2;
-        if(isdigit(atual1))
+        if(isdigit(atual1))  // se for um número
           val1 = atual1 - '0';
         else
           val1 = charToInt(atual1);
-        if(isdigit(atual2))
+        if(isdigit(atual2))  // se for um numero
           val2 = atual2 - '0';
         else
           val2 = charToInt(atual2);
@@ -68,7 +68,7 @@ using std::string;
             }
 
           }
-          if(val1 + val2 < base)
+          if(val1 + val2 < base)  // se a soma dos valores atuais for menor do que a base
           {
             if(val1 + val2 <= 9)
               um[i] = (val1 + val2) + 48;
@@ -82,9 +82,9 @@ using std::string;
               um[i] = ((val1 + val2) - base) + 48;
             else
               um[i] = intToChar((val1 + val2) - base);
-            if(i - 1 < 0)
+            if(i - 1 < 0)  // se estivermos no começo do número
             {
-              um = "1" + um;
+              um = "1" + um;  // adicionamos um ao começo
               continue;
             }
             peso = true;
@@ -97,12 +97,12 @@ using std::string;
     return um;
     }
 
-    int Somador::charToInt(char letter)
+    int Somador::charToInt(char letter)  // retorna a letra equivalente a um numero
     {
       return (int) (letter - 55);
     }
 
-    char Somador::intToChar(int number)
+    char Somador::intToChar(int number)  // retorna o numero equivalente a uma letra
     {
       return (char) (number + 55);
     }
@@ -111,14 +111,14 @@ using std::string;
     {
       primeiro = numeroUm;
       segundo = numeroDois;
-      string primeiroAntes = "";
-      string primeiroDepois = "";
-      string segundoAntes = "";
-      string segundoDepois = "";
+      string primeiroAntes = "";  // antes da virgula
+      string primeiroDepois = "";  // depois da virgula
+      string segundoAntes = "";  // antes da virgula
+      string segundoDepois = "";  // depois da virgula
       bool temVirgula1 = false;
       bool temVirgula2 = false;
 
-      if((char)primeiro[0] == 45)
+      if((char)primeiro[0] == 45)  // se o primeiro caractere for "-"
       {
         string aux = "";
         for(int i = 1; i < primeiro.length(); i++)
@@ -129,7 +129,7 @@ using std::string;
         primeiroNegativo = true;
       }
 
-      if((char)segundo[0] == 45)
+      if((char)segundo[0] == 45)  // se o primeiro caractere for "-""
       {
         string aux = "";
         for(int i = 1; i < segundo.length(); i++)
@@ -140,7 +140,7 @@ using std::string;
         segundoNegativo = true;
       }
 
-      for(int i = 0; i < primeiro.length(); i++)
+      for(int i = 0; i < primeiro.length(); i++)  // percorrer toda a string
       {
         if(primeiro[i] == '.' || primeiro[i] == ',')
         {
@@ -153,7 +153,7 @@ using std::string;
           primeiroDepois += primeiro[i];
       }
 
-      for(int i = 0; i < segundo.length(); i++)
+      for(int i = 0; i < segundo.length(); i++)  // percorrer toda a string
       {
         if(segundo[i] == '.' || segundo[i] == ',')
         {
@@ -198,22 +198,22 @@ using std::string;
         }
       }
 
-      if(temVirgula1)
+      if(temVirgula1)  // se o primeiro tiver virgula
         primeiro = primeiroAntes + "." + primeiroDepois;
       else
         primeiro = primeiroAntes;
-      if(temVirgula2)
+      if(temVirgula2)  // se o segunto tiver virgula
         segundo = segundoAntes + "." + segundoDepois;
       else
         segundo = segundoAntes;
 
-      if(primeiro.length() > segundo.length())
+      if(primeiro.length() > segundo.length())  // se o primeiro for maior que o segundo
       {
         segundo += ".";
         while(segundo.length() < primeiro.length())
           segundo += "0";
       }
-      else if (segundo.length() > primeiro.length())
+      else if (segundo.length() > primeiro.length())  // se o segundo for maior que o primeiro
       {
         primeiro += ".";
         while(primeiro.length() < segundo.length())

@@ -104,12 +104,12 @@ using std::string;
       
     }
 
-    int Divisor::charToInt(char letter)
+    int Divisor::charToInt(char letter)  // retorna a letra equivalente a um numero
     {
       return (int) (letter - 55);
     }
 
-    char Divisor::intToChar(int number)
+    char Divisor::intToChar(int number)  // retorna o numero equivalente a uma letra
     {
       return (char) (number + 55);
     }
@@ -125,7 +125,7 @@ using std::string;
       bool temVirgula1 = false;
       bool temVirgula2 = false;
 
-      if((char)primeiro[0] == 45)
+      if((char)primeiro[0] == 45)  // se o primeiro caractere for "-"
       {
         string aux = "";
         for(int i = 1; i < primeiro.length(); i++)
@@ -136,7 +136,7 @@ using std::string;
         primeiroNegativo = true;
       }
 
-      if((char)segundo[0] == 45)
+      if((char)segundo[0] == 45)  // se o primeiro caractere for "-"
       {
         string aux = "";
         for(int i = 1; i < segundo.length(); i++)

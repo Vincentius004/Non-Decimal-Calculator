@@ -37,9 +37,9 @@ int verificar(string numero, int tamanho, int base)  // verificar se está de ac
 int main()
 {
   int base;
-  string priValor;
-  string secValor;
-  char operacao;
+  string priValor;  // o primeiro valor
+  string secValor;  // o segunbdo valor
+  char operacao;  // a base dos numeros informados
 
   cout<< "Digite a base entre 2 e 36 a qual deseja realizar operações: "<< endl;
   cin >> base;
@@ -50,16 +50,14 @@ int main()
   cout<< "Digite o segundo valor: "<<endl;
   cin >> secValor;
 
-  int a =verificar(priValor,priValor.length(),base);
-  int b =verificar(secValor,secValor.length(),base);
-  cout<<a<<endl;
-  cout<<b<<endl;
-  if (a < 0 || b < 0){
+  int a =verificar(priValor,priValor.length(),base);  // verificar o primeiro numero
+  int b =verificar(secValor,secValor.length(),base);  // verificar o segundo numero
+  if (a < 0 || b < 0){  // se algum deles estiver incorreto
     cout<<"Os números informados não condizem com a base"<<endl;
     return 0;
   }
 
-  Contas contas(priValor, secValor, base);
+  Contas contas(priValor, secValor, base);  // objeto da classe Contas
 
   cout<<"Digite a operação dentre a lista: + - * / "<<endl;
   cin >> operacao;
@@ -67,19 +65,19 @@ int main()
   switch(operacao)
   {
     case'+':cout<<"+";
-    cout<<"Resultado: " + contas.Soma()<<endl;
+    cout<<"Resultado: " + contas.Soma()<<endl;  // escrever soma dos números
     break;
 
     case'-':cout<<"-\n";
-    cout<<"Resultado: " + contas.Subtracao()<<endl;
+    cout<<"Resultado: " + contas.Subtracao()<<endl;  // escrever subtração dos números
     break;
 
     case'*':cout<<"*\n";
-    cout<<"Resultado: " + contas.Multiplicacao()<<endl;
+    cout<<"Resultado: " + contas.Multiplicacao()<<endl; // escrever multiplicação dos números
     break;
 
     case'/':cout<<"/\n";
-    cout<<"Resultado: " + contas.Divisao()<<endl;
+    cout<<"Resultado: " + contas.Divisao()<<endl;  // escrever divisão dos números
     break;
 
     default:cout<<"Digite uma operacao valida!"<<endl;

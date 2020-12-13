@@ -47,7 +47,7 @@ using std::string;
       else
       {
         
-        for(int i =0; i <= size1-1; i++)
+        for(int i =0; i <= size1-1; i++)  // percorrer os numeros para ver qual é o maior
         {
           if(numeroUm[i] == '.')
             continue;
@@ -103,7 +103,7 @@ using std::string;
           val2 = atual2 - '0';
         else
           val2 = charToInt(atual2);
-        if(val1 >= val2) 
+        if(val1 >= val2)  // se o valor atual do primeiro for maior ou igual ao segundo
         {
           if(isdigit(um[i]))
             um[i] = ((um[i] - '0') - val2) + '0';
@@ -185,12 +185,12 @@ using std::string;
       
     }
 
-    int Subtrador::charToInt(char letter)
+    int Subtrador::charToInt(char letter)  // retorna a letra equivalente a um numero 
     {
       return (int) (letter - 55);
     }
 
-    char Subtrador::intToChar(int number)
+    char Subtrador::intToChar(int number)  // retorna o numero equivalene a uma letra
     {
       return (char) (number + 55);
     }
@@ -206,7 +206,7 @@ using std::string;
       bool temVirgula1 = false;
       bool temVirgula2 = false;
 
-      if((char)primeiro[0] == 45)
+      if((char)primeiro[0] == 45)  // se o primeiro caractere for "-"
       {
         string aux = "";
         for(int i = 1; i < primeiro.length(); i++)
@@ -217,7 +217,7 @@ using std::string;
         primeiroNegativo = true;
       }
 
-      if((char)segundo[0] == 45)
+      if((char)segundo[0] == 45)  // se o primeiro caractere for "-"
       {
         string aux = "";
         for(int i = 1; i < segundo.length(); i++)
