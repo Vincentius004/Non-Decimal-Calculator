@@ -36,6 +36,9 @@ int verificar(string numero, int tamanho, int base)  // verificar se está de ac
 
 int main()
 {
+  bool repetir = true;
+  while(repetir)
+  {
   int base;
   string priValor;  // o primeiro valor
   string secValor;  // o segunbdo valor
@@ -59,29 +62,35 @@ int main()
 
   Contas contas(priValor, secValor, base);  // objeto da classe Contas
 
-  cout<<"Digite a operação dentre a lista: + - * / "<<endl;
+  cout<<"Digite a operação dentre a lista: '+', '-', '*', '/', 'S'(sair) "<<endl;
   cin >> operacao;
 
   switch(operacao)
   {
-    case'+':cout<<"+";
-    cout<<"Resultado: " + contas.Soma()<<endl;  // escrever soma dos números
+    case'+':
+    cout<<"Resultado: " << contas.Soma()<< "\n"<<endl;  // escrever soma dos números
     break;
 
-    case'-':cout<<"-\n";
-    cout<<"Resultado: " + contas.Subtracao()<<endl;  // escrever subtração dos números
+    case'-':
+    cout<<"Resultado: "<< contas.Subtracao() << "\n"<<endl;  // escrever subtração dos números
     break;
 
-    case'*':cout<<"*\n";
-    cout<<"Resultado: " + contas.Multiplicacao()<<endl; // escrever multiplicação dos números
+    case'*':
+    cout<<"Resultado: "<< contas.Multiplicacao() << "\n"<<endl; // escrever multiplicação dos números
     break;
 
-    case'/':cout<<"/\n";
-    cout<<"Resultado: " + contas.Divisao()<<endl;  // escrever divisão dos números
+    case'/':
+    cout<<"Resultado: " << contas.Divisao() << "\n"<<endl;  // escrever divisão dos números
     break;
 
-    default:cout<<"Digite uma operacao valida!"<<endl;
+    case'S':
+    case's':
+    repetir = false;
+    break;
 
+    default:cout<<"Digite uma operacao valida!"<<"\n"<<endl;
+
+  }
   }
 
   return 0;
